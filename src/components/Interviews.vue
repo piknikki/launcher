@@ -1,8 +1,15 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="interview in interviews" :key="interview.key">{{ interview }}</li>
-    </ul>
+  <div class="wrapper">
+    <table class="interviews-container">
+      <tr v-for="(interview, index) in interviews"
+          :key="interview.key"
+          :data-id="index"
+          class="row"
+          :class="rowColor(index)"
+      >
+        {{ interview.company }}
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -32,10 +39,29 @@ export default {
         })
       })
     })
+  },
+  methods: {
+    rowColor: function (row) {
+      const rowNum = Number(row)
+      return {
+        grey: rowNum % 2 === 0
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
+.wrapper {
+}
 
+.interviews-container {
+  margin: 0 auto;
+  line-height: 2;
+  width: 60%;
+}
+
+.grey {
+  background: #b8b8b8;
+}
 </style>
