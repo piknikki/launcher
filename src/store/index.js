@@ -27,6 +27,11 @@ export default new Vuex.Store({
         })
     }
   },
+  getters: {
+    getSelectedInterview: (state) => (id) => {
+      return state.fetchedInterviews.find(interview => interview.id === id)
+    }
+  },
   modules: {
   }
 })

@@ -7,7 +7,7 @@
           class="row"
           :class="rowColor(index)"
       >
-        <RouterLink :to="{ name: 'Interview', params: { slug: interview.slug }}">
+        <RouterLink :to="{ name: 'Interview', params: { id: interview.id, slug: interview.slug }}">
           {{ interview.company }}
         </RouterLink>
       </tr>
