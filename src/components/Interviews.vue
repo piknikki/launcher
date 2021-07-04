@@ -53,6 +53,12 @@ export default {
 
 <style scoped>
 .wrapper {
+  margin: 20px auto;
+  padding: 20px;
+  width: 65%;
+  border-radius: 7px;
+  -webkit-box-shadow: 0 0 10px #818080;
+  box-shadow: 0 0 10px #818080;
 }
 
 .interviews-container {
