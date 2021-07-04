@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { db } from '../firebaseDb'
+// import { db } from '../firebaseDb'
 
 export default {
   name: 'InterviewForm',
