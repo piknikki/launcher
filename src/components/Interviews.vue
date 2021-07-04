@@ -1,52 +1,47 @@
 <template>
   <div class="wrapper">
     <table class="interviews-container">
-      <tr v-for="(interview, index) in interviews"
+      <tr v-for="(interview, index) in fetchedInterviews"
           :key="interview.key"
           :data-id="index"
           class="row"
           :class="rowColor(index)"
       >
-        {{ interview.company }}
+        <RouterLink :to="{ name: 'Interview', params: { slug: interview.slug }}">
+          {{ interview.company }}
+        </RouterLink>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
-import { db } from '../firebaseDb'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Interviews',
   data () {
     return {
-      interviews: []
     }
   },
-  created () {
-    db.collection('interviews').onSnapshot((snapshot) => {
-      snapshot.forEach((doc) => {
-        this.interviews.push({
-          key: doc.id,
-          company: doc.data().company,
-          date: doc.data().date,
-          description: doc.data().description,
-          offer: doc.data().offer,
-          retro: doc.data().retro,
-          solution: doc.data().solution,
-          steps: doc.data().steps,
-          takeaways: doc.data().takeaways
-        })
-      })
-    })
+  computed: {
+    ...mapState([
+      'fetchedInterviews'
+    ])
   },
   methods: {
+    ...mapActions([
+      'fetchInterviews'
+    ]),
     rowColor: function (row) {
       const rowNum = Number(row)
       return {
         grey: rowNum % 2 === 0
       }
     }
+  },
+  created () {
+    this.fetchInterviews()
   }
 }
 </script>

@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" alt="Launcher logo" src="../assets/launcher.png">
-    <h1>Launcher Interviews</h1>
-    <p>all interviews go here in a table maybe</p>
+    <h1 class="header">Launcher Interviews</h1>
     <Interviews />
   </div>
 </template>
@@ -21,5 +20,9 @@ export default {
 <style>
 .logo {
   width: 75px;
+}
+
+.header {
+  margin: 30px;
 }
 </style>

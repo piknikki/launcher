@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Interview from '../components/Interview'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/form',
     name: 'InterviewForm',
     component: () => import(/* webpackChunkName: "form" */ '../views/InterviewForm.vue')
+  },
+  {
+    path: '/interview/:slug',
+    name: 'Interview',
+    component: Interview
   }
 ]
 
