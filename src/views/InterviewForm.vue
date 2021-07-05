@@ -2,7 +2,7 @@
   <div class="block">
 <!--    <h1>Form</h1>-->
     <div class="form-wrapper">
-      <form v-on:submit.prevent="onSubmit">
+      <form v-on:submit.prevent.self="onSubmit">
         <fieldset>
           <legend>Submit a new interview experience</legend>
           <label for="company">Company: </label>
@@ -44,8 +44,8 @@
             </div>
             <div>
               <input type="checkbox" v-model="other" @change="addOther(other)">
-              <label class="step-options">Other: </label>
-              <input v-if="other" type="text" value="other" v-model="otherText" v-on:keyup.enter="setOtherText">
+              <label class="step-options">Other (click tab when done): </label>
+              <input v-if="other" type="text" value="other" v-model.lazy="otherText" @change="setOtherText">
             </div>
           <br>
 
@@ -53,9 +53,9 @@
           <textarea v-model="formData.description"
                     id="description"
                     placeholder="As much detail as you can"
-                    rows="1"
+                    rows="2"
                     cols="40"
-                    wrap="hard"
+                    wrap="soft"
           ></textarea>
           <br>
 
@@ -63,9 +63,9 @@
           <textarea v-model="formData.solution"
                     id="solution"
                     placeholder="What did you do?"
-                    rows="1"
+                    rows="2"
                     cols="40"
-                    wrap="hard"
+                    wrap="soft"
           ></textarea>
           <br>
 
@@ -73,9 +73,9 @@
           <textarea v-model="formData.retro"
                     id="retro"
                     placeholder="What could you have done better?"
-                    rows="1"
+                    rows="2"
                     cols="40"
-                    wrap="hard"
+                    wrap="soft"
           ></textarea>
           <br>
 
@@ -83,12 +83,13 @@
           <textarea v-model="formData.takeaways"
                     id="takeaways"
                     placeholder="What lessons were learned?"
-                    rows="1"
+                    rows="2"
                     cols="40"
-                    wrap="hard"
+                    wrap="soft"
           ></textarea>
           <br>
         </fieldset>
+        <button type="submit"> Submit</button>
       </form>
       <div class="form-data" v-if="formData.company">
         <p>{{ formData.company }}  ({{ formData.offer ? 'offer received' : 'no offer' }})</p>
