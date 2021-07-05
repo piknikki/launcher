@@ -4,20 +4,37 @@
     <div class="form-wrapper">
       <form>
         <fieldset>
+          <legend>Submit a new interview experience</legend>
           <label for="company">Company: </label>
           <input v-model="company" id="company" type="text" placeholder="Company Name"><br>
 
           <label for="offer">Offer received: </label>
           <input v-model="offer" id="offer" type="checkbox"><br>
 
-          <label for="date">Date</label>
+          <label for="date">Date you applied: </label>
           <input v-model="date" id="date" type="date"><br>
 
-          <label for="steps-screen">Steps (select all that apply)</label>
-            <input type="radio" id="steps-screen" value="HR screening" name="steps">
-            <input type="radio" id="steps-video" value="Video interview" name="steps">
-            <input type="radio" id="steps-takehome" value="Take-home challenge" name="steps">
-            <input type="radio" id="steps-whiteboard" value="Whiteboard w/interviewer" name="steps">
+          <label>Steps (select all that apply)</label>
+            <div>
+              <input type="radio" id="steps-screen" value="screening" name="steps">
+              <label for="steps-screen" class="radio-label">HR Screening</label>
+            </div>
+            <div>
+              <input type="radio" id="steps-video" value="video" name="steps">
+              <label for="steps-video" class="radio-label">Video Interview</label>
+            </div>
+            <div>
+              <input type="radio" id="steps-takehome" value="takehome" name="steps">
+              <label for="steps-takehome" class="radio-label">Takehome Challenge</label>
+            </div>
+            <div>
+              <input type="radio" id="steps-whiteboard" value="whiteboard" name="steps">
+              <label for="steps-whiteboard" class="radio-label">Whiteboard with interviewer</label>
+            </div>
+          <div>
+            <input type="radio" id="steps-final" value="final" name="steps">
+            <label for="steps-final" class="radio-label">Final with higher-ups</label>
+          </div>
           <br>
 
           <label for="description">Description of the tech challenge: </label>
@@ -31,14 +48,13 @@
 
           <label for="takeaways">Takeaways: </label>
           <input type="text" v-model="takeaways" id="takeaways" placeholder="What lessons were learned?">
-
         </fieldset>
       </form>
-      <div class="form-data" v-if="company">
-        <p>{{ company }}  ({{ offer ? 'offer received' : 'no offer' }})</p>
-        <p>Applied {{ date }}</p>
-        <p>{{ description }}</p>
-      </div>
+<!--      <div class="form-data" v-if="company">-->
+<!--        <p>{{ company }}  ({{ offer ? 'offer received' : 'no offer' }})</p>-->
+<!--        <p>Applied {{ date }}</p>-->
+<!--        <p>{{ description }}</p>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
@@ -81,24 +97,30 @@ form {
   margin: 0 auto;
 }
 
-label {
-  padding-left: 20px;
+legend {
+  padding: 0 10px;
+}
+
+fieldset {
+  padding: 20px;
 }
 
 input {
   font-size: 1.4rem;
   border: none;
   margin-left: 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid grey;
 }
 
-.form-data {
-  width: 40%;
-  background: pink;
-}
+/*.form-data {*/
+/*  width: 40%;*/
+/*  background: pink;*/
+/*}*/
 
 input[type=text] {
   width: 90%;
+  padding: 5px;
 }
 
 input[type=checkbox] {
@@ -108,5 +130,13 @@ input[type=checkbox] {
   -o-transform: scale(1.5);
   transform: scale(1.5);
   margin-left: 20px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.radio-label {
+  padding-left: 10px;
 }
 </style>
