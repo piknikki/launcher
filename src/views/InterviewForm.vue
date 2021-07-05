@@ -2,59 +2,100 @@
   <div class="block">
 <!--    <h1>Form</h1>-->
     <div class="form-wrapper">
-      <form>
+      <form v-on:submit.prevent="onSubmit">
         <fieldset>
           <legend>Submit a new interview experience</legend>
           <label for="company">Company: </label>
-          <input v-model="company" id="company" type="text" placeholder="Company Name"><br>
+          <input v-model="formData.company" id="company" type="text" placeholder="Company Name">
+          <br>
 
           <label for="offer">Offer received: </label>
-          <input v-model="offer" id="offer" type="checkbox"><br>
+          <input v-model="formData.offer" id="offer" type="checkbox">
+          <br>
 
           <label for="date">Date you applied: </label>
-          <input v-model="date" id="date" type="date"><br>
+          <input v-model="formData.date" id="date" type="date">
+          <br>
 
           <label>Steps (select all that apply)</label>
             <div>
-              <input type="radio" id="steps-screen" value="screening" name="steps">
-              <label for="steps-screen" class="radio-label">HR Screening</label>
+              <input type="checkbox" id="steps-screen" value="screening" v-model="formData.steps">
+              <label for="steps-screen" class="step-options">HR Screening</label>
             </div>
             <div>
-              <input type="radio" id="steps-video" value="video" name="steps">
-              <label for="steps-video" class="radio-label">Video Interview</label>
+              <input type="checkbox" id="steps-video" value="video" v-model="formData.steps">
+              <label for="steps-video" class="step-options">Video Interview</label>
             </div>
             <div>
-              <input type="radio" id="steps-takehome" value="takehome" name="steps">
-              <label for="steps-takehome" class="radio-label">Takehome Challenge</label>
+              <input type="checkbox" id="steps-informal" value="informal" v-model="formData.steps">
+              <label for="steps-informal" class="step-options">Informal Chat with employee</label>
             </div>
             <div>
-              <input type="radio" id="steps-whiteboard" value="whiteboard" name="steps">
-              <label for="steps-whiteboard" class="radio-label">Whiteboard with interviewer</label>
+              <input type="checkbox" id="steps-takehome" value="takehome" v-model="formData.steps">
+              <label for="steps-takehome" class="step-options">Takehome Challenge</label>
             </div>
-          <div>
-            <input type="radio" id="steps-final" value="final" name="steps">
-            <label for="steps-final" class="radio-label">Final with higher-ups</label>
-          </div>
+            <div>
+              <input type="checkbox" id="steps-whiteboard" value="whiteboard" v-model="formData.steps">
+              <label for="steps-whiteboard" class="step-options">Whiteboard with interviewer</label>
+            </div>
+            <div>
+              <input type="checkbox" id="steps-final" value="final" v-model="formData.steps">
+              <label for="steps-final" class="step-options">Final with higher-ups</label>
+            </div>
+            <div>
+              <input type="checkbox" v-model="other" @change="addOther(other)">
+              <label class="step-options">Other: </label>
+              <input v-if="other" type="text" value="other" v-model="otherText" v-on:keyup.enter="setOtherText">
+            </div>
           <br>
 
           <label for="description">Description of the tech challenge: </label>
-          <input v-model="description" id="description" type="text" placeholder="As much detail as you can"><br>
+          <textarea v-model="formData.description"
+                    id="description"
+                    placeholder="As much detail as you can"
+                    rows="1"
+                    cols="40"
+                    wrap="hard"
+          ></textarea>
+          <br>
 
           <label for="solution">Solution: </label>
-          <input v-model="solution" id="solution" type="text" placeholder="What did you do?"><br>
+          <textarea v-model="formData.solution"
+                    id="solution"
+                    placeholder="What did you do?"
+                    rows="1"
+                    cols="40"
+                    wrap="hard"
+          ></textarea>
+          <br>
 
           <label for="retro">Retrospective: </label>
-          <input v-model="retro" id="retro" type="text" placeholder="What could you have done better?"><br>
+          <textarea v-model="formData.retro"
+                    id="retro"
+                    placeholder="What could you have done better?"
+                    rows="1"
+                    cols="40"
+                    wrap="hard"
+          ></textarea>
+          <br>
 
           <label for="takeaways">Takeaways: </label>
-          <input type="text" v-model="takeaways" id="takeaways" placeholder="What lessons were learned?">
+          <textarea v-model="formData.takeaways"
+                    id="takeaways"
+                    placeholder="What lessons were learned?"
+                    rows="1"
+                    cols="40"
+                    wrap="hard"
+          ></textarea>
+          <br>
         </fieldset>
       </form>
-<!--      <div class="form-data" v-if="company">-->
-<!--        <p>{{ company }}  ({{ offer ? 'offer received' : 'no offer' }})</p>-->
-<!--        <p>Applied {{ date }}</p>-->
-<!--        <p>{{ description }}</p>-->
-<!--      </div>-->
+      <div class="form-data" v-if="formData.company">
+        <p>{{ formData.company }}  ({{ formData.offer ? 'offer received' : 'no offer' }})</p>
+        <p>Applied {{ formData.date }}</p>
+        <p>{{ formData.description }}</p>
+        <p>steps {{ formData.steps }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -64,14 +105,34 @@ export default {
   name: 'InterviewForm',
   data () {
     return {
-      company: '',
-      date: '',
-      description: '',
-      offer: null,
-      retro: '',
-      solution: '',
-      steps: [],
-      takeaways: []
+      formData: {
+        company: '',
+        date: '',
+        description: '',
+        offer: null,
+        retro: '',
+        solution: '',
+        steps: [],
+        takeaways: ''
+      },
+      other: false,
+      otherText: ''
+    }
+  },
+  methods: {
+    addOther (e) {
+      this.$emit('add-other', {
+        other: e
+      })
+    },
+    setOtherText (text) {
+      this.$emit('set-other-text', {
+        otherText: text
+      })
+      this.formData.steps.push(this.otherText)
+    },
+    onSubmit () {
+      console.log(this.formData)
     }
   }
 }
@@ -113,6 +174,16 @@ input {
   border-bottom: 1px solid grey;
 }
 
+textarea {
+  display: block;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+  border: none;
+  margin: 10px 20px;
+  border-bottom: 1px solid grey;
+  padding: 0 5px;
+}
+
 /*.form-data {*/
 /*  width: 40%;*/
 /*  background: pink;*/
@@ -136,7 +207,7 @@ li {
   list-style-type: none;
 }
 
-.radio-label {
+.step-options {
   padding-left: 10px;
 }
 </style>
