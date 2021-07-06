@@ -1,6 +1,5 @@
 <template>
   <div class="block">
-<!--    <h1>Form</h1>-->
     <div class="form-wrapper">
       <form v-on:submit.prevent.self="onSubmit">
         <fieldset>
@@ -13,8 +12,12 @@
           <input v-model="formData.company" id="company" type="text" placeholder="Company Name" required>
           <br>
 
-          <label for="title">Role you applied for: </label>
+          <label for="title">Role you applied for:<sup class="required">*</sup> </label>
           <input v-model="formData.title" id="title" type="text" placeholder="Job title" required>
+          <br>
+
+          <label for="stack">Tech Stack: </label>
+          <input v-model="formData.stack" id="stack" type="text" placeholder="Separate with commas" required>
           <br>
 
           <label for="offer">Offer received?: </label>
@@ -138,7 +141,8 @@ export default {
         solution: '',
         steps: [],
         takeaways: '',
-        slug: ''
+        slug: '',
+        stack: null
       },
       other: false,
       otherText: ''
@@ -164,6 +168,7 @@ export default {
       })
       this.formData.slug = slugifiedName
       console.log(this.formData)
+      const techStack = this.formData.stack.split(', ')
 
       return db.collection('interviews').add({
         user: this.formData.user,
@@ -176,7 +181,8 @@ export default {
         solution: this.formData.solution,
         steps: this.formData.steps,
         takeaways: this.formData.takeaways,
-        slug: this.formData.slug
+        slug: this.formData.slug,
+        stack: techStack
       })
         .then(() => {
           this.$router.push('/')
@@ -196,13 +202,6 @@ export default {
   text-align: left;
   font-size: 1.6rem;
 }
-
-/*.form-wrapper {*/
-/*  display: flex;*/
-/*  flex-flow: row nowrap;*/
-/*  justify-content: left;*/
-/*  align-items: flex-start;*/
-/*}*/
 
 form {
   width: 60%;
@@ -236,11 +235,6 @@ textarea {
   max-width: 600px;
   max-height: 100%;
 }
-
-/*.form-data {*/
-/*  width: 40%;*/
-/*  background: pink;*/
-/*}*/
 
 input[type=text] {
   width: 90%;
