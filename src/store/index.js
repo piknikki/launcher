@@ -25,6 +25,19 @@ export default new Vuex.Store({
           })
           context.commit('setFetchedInterviews', snapArray)
         })
+    },
+    sendInterview (context, payload) {
+      return db.collection('interviews').add({
+        company: payload.company,
+        date: payload.date,
+        description: payload.description,
+        offer: payload.offer,
+        retro: payload.retro,
+        solution: payload.solution,
+        steps: payload.steps,
+        takeaways: payload.takeaways,
+        slug: payload.slug
+      })
     }
   },
   getters: {

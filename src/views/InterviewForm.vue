@@ -88,11 +88,14 @@
                     wrap="soft"
           ></textarea>
           <br>
+          <div class="button-wrapper">
+            <button type="submit"> Submit</button>
+          </div>
         </fieldset>
-        <button type="submit"> Submit</button>
       </form>
       <div class="form-data" v-if="formData.company">
-        <p>{{ formData.company }}  ({{ formData.offer ? 'offer received' : 'no offer' }})</p>
+<!--        <p>slug: {{ slug }}</p>-->
+        <p>company: {{ formData.company }}  ({{ formData.offer ? 'offer received' : 'no offer' }})</p>
         <p>Applied {{ formData.date }}</p>
         <p>{{ formData.description }}</p>
         <p>steps {{ formData.steps }}</p>
@@ -102,6 +105,9 @@
 </template>
 
 <script>
+import slugify from 'slugify'
+import { db } from '../firebaseDb'
+
 export default {
   name: 'InterviewForm',
   data () {
@@ -114,7 +120,8 @@ export default {
         retro: '',
         solution: '',
         steps: [],
-        takeaways: ''
+        takeaways: '',
+        slug: ''
       },
       other: false,
       otherText: ''
@@ -133,7 +140,31 @@ export default {
       this.formData.steps.push(this.otherText)
     },
     onSubmit () {
+      const slugifiedName = slugify(this.formData.company, {
+        replacement: '-',
+        remove: /[$*_+~.()'"!?\-:@]/g,
+        lower: true
+      })
+      this.formData.slug = slugifiedName
       console.log(this.formData)
+
+      return db.collection('interviews').add({
+        company: this.formData.company,
+        date: this.formData.date,
+        description: this.formData.description,
+        offer: this.formData.offer,
+        retro: this.formData.retro,
+        solution: this.formData.solution,
+        steps: this.formData.steps,
+        takeaways: this.formData.takeaways,
+        slug: this.formData.slug
+      })
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }
@@ -210,5 +241,23 @@ li {
 
 .step-options {
   padding-left: 10px;
+}
+
+.button-wrapper {
+  margin: 50px 0;
+  float: right;
+}
+
+button {
+  align-items: center;
+  background-color: white;
+  box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
+  -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin-right: 4rem;
+  width: 100px;
 }
 </style>
