@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <table class="interviews-container">
+      <tbody>
       <tr v-for="(interview, index) in fetchedInterviews"
           :key="interview.key"
           :data-id="index"
@@ -11,6 +12,7 @@
           {{ interview.company }}
         </RouterLink>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -48,6 +50,7 @@ export default {
 
 <style scoped>
 .wrapper {
+  font-size: 1rem;
   margin: 20px auto;
   padding: 20px;
   width: 65%;
