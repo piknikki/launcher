@@ -5,13 +5,14 @@ entering your experiences here, you can help others and also benefit from the kn
 launch our careers. Plus, it's good for your karma and shit.
 
 ## Live site: 
-http:
+[https://launcher-app.netlify.app/](https://launcher-app.netlify.app/)
 
 ## Stack
 * Vue.js
 * Vue Router
 * Vuex state management
 * Firebase firestore db
+* Deployed on Netlify
 
 ## Project setup
 ```
