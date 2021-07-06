@@ -3,6 +3,7 @@
     <h1>{{ interview.company }}</h1>
     <p>Interviewee: {{ interview.user }}</p>
     <p>Offer? {{ interview.offer ? 'Yes' : 'No' }}</p>
+    <p>Position applied to: {{ interview.title }}</p>
     <div>
       <span class="bold">Takeaways (tl;dr): </span>{{ interview.takeaways }}
     </div>
