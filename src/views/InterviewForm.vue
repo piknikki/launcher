@@ -13,7 +13,11 @@
           <input v-model="formData.company" id="company" type="text" placeholder="Company Name" required>
           <br>
 
-          <label for="offer">Offer received: </label>
+          <label for="title">Role you applied for: </label>
+          <input v-model="formData.title" id="title" type="text" placeholder="Job title" required>
+          <br>
+
+          <label for="offer">Offer received?: </label>
           <input v-model="formData.offer" id="offer" type="checkbox">
           <br>
 
@@ -127,6 +131,7 @@ export default {
         user: '',
         company: '',
         date: '',
+        title: '',
         description: '',
         offer: null,
         retro: '',
@@ -164,6 +169,7 @@ export default {
         user: this.formData.user,
         company: this.formData.company,
         date: this.formData.date,
+        title: this.formData.title,
         description: this.formData.description,
         offer: this.formData.offer,
         retro: this.formData.retro,
