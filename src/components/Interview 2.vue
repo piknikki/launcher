@@ -1,15 +1,14 @@
 <template>
   <div class="interview-container">
     <h1>{{ interview.company }}</h1>
-    <p>Interviewee: {{ interview.user }}</p>
-    <p>Offer? {{ interview.offer ? 'Yes' : 'No' }}</p>
-    <p>Position applied to: {{ interview.title }}</p>
-    <ul>Stack:
-      <li v-for="(tech, index) in interview.stack" :key="index">{{ tech }}</li>
-    </ul>
     <div>
-      <span class="bold">Takeaways (tl;dr): </span>{{ interview.takeaways }}
+      Takeaways (tl;dr):
+      <ul>
+        <li v-for="(t, index) in interview.takeaways" :key="index">{{ t }}</li>
+      </ul>
     </div>
+    <p>Interviewee: Nikki P.</p>
+    <p>Offer? {{ interview.offer }}</p>
     <p>Date of application: {{ interview.date }}</p>
     <ul>Steps in the interview process:
       <li v-for="(step, index) in interview.steps" :key="index">{{ step }}</li>
@@ -36,16 +35,10 @@ export default {
   width: 60%;
   margin: 20px auto;
   text-align: left;
-  font-size: 1.3rem;
 }
 
 li {
   list-style-type: none;
-  padding-left: 15px;
-}
-
-.bold {
-  font-weight: 700;
-  font-size: 1.4rem;
+  padding-left: 10px;
 }
 </style>
