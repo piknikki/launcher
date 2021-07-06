@@ -1,22 +1,26 @@
 <template>
   <div class="interview-container">
     <h1>{{ interview.company }}</h1>
-    <p>Interviewee: {{ interview.user }}</p>
-    <p>Offer? {{ interview.offer ? 'Yes' : 'No' }}</p>
-    <p>Position applied to: {{ interview.title }}</p>
-    <ul>Stack:
-      <li v-for="(tech, index) in interview.stack" :key="index">{{ tech }}</li>
-    </ul>
-    <div>
+    <section>Interviewee: {{ interview.user }}</section>
+    <section>Offer? {{ interview.offer ? 'Yes' : 'No' }}</section>
+    <section>Position applied to: {{ interview.title }}</section>
+    <section>
+      <ul>Stack:
+        <li v-for="(tech, index) in interview.stack" :key="index">{{ tech }}</li>
+      </ul>
+    </section>
+    <section>
       <span class="bold">Takeaways (tl;dr): </span>{{ interview.takeaways }}
-    </div>
-    <p>Date of application: {{ interview.date }}</p>
-    <ul>Steps in the interview process:
-      <li v-for="(step, index) in interview.steps" :key="index">{{ step }}</li>
-    </ul>
-    <p>Tech challenge:  {{ interview.description }}</p>
-    <p>My solution:  {{ interview.solution }}</p>
-    <p>What I think went wrong:  {{ interview.retro }}</p>
+    </section>
+    <section>Date of application: {{ interview.date }}</section>
+    <section>
+      <ul>Steps in the interview process:
+        <li v-for="(step, index) in interview.steps" :key="index">{{ step }}</li>
+      </ul>
+    </section>
+    <section>Tech challenge:  {{ interview.description }}</section>
+    <section>My solution:  {{ interview.solution }}</section>
+    <section>What I think went wrong:  {{ interview.retro }}</section>
   </div>
 </template>
 
@@ -37,6 +41,13 @@ export default {
   margin: 20px auto;
   text-align: left;
   font-size: 1.3rem;
+}
+
+section {
+  border: 1px solid grey;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 li {
