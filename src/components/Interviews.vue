@@ -63,10 +63,15 @@ export default {
   margin: 0 auto;
   line-height: 2;
   width: 60%;
+  font-size: 1.4rem;
 }
 
 .grey {
   background: #b8b8b8;
+}
+
+a {
+  text-decoration: none;
 }
 
 </style>
