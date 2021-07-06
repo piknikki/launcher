@@ -6,18 +6,19 @@
         <fieldset>
           <legend>Submit a new interview experience</legend>
           <label for="company">Company: </label>
-          <input v-model="formData.company" id="company" type="text" placeholder="Company Name">
+          <input v-model="formData.company" id="company" type="text" placeholder="Company Name" required>
           <br>
 
           <label for="offer">Offer received: </label>
-          <input v-model="formData.offer" id="offer" type="checkbox">
+          <input v-model="formData.offer" id="offer" type="checkbox" required>
           <br>
 
           <label for="date">Date you applied: </label>
-          <input v-model="formData.date" id="date" type="date">
+          <input v-model="formData.date" id="date" type="date" required>
           <br>
 
-          <label>Steps (select all that apply)</label>
+          <label>Steps (select all that apply, at least one)</label>
+          <div class="options-wrapper">
             <div>
               <input type="checkbox" id="steps-screen" value="screening" v-model="formData.steps">
               <label for="steps-screen" class="step-options">HR Screening</label>
@@ -44,9 +45,10 @@
             </div>
             <div>
               <input type="checkbox" v-model="other" @change="addOther(other)">
-              <label class="step-options">Other (click tab when done): </label>
+              <label class="step-options">Other: </label>
               <input v-if="other" type="text" value="other" v-model.lazy="otherText" @change="setOtherText">
             </div>
+          </div>
           <br>
 
           <label for="description">Description of the tech challenge: </label>
@@ -243,6 +245,10 @@ li {
   padding-left: 10px;
 }
 
+.options-wrapper {
+  margin: 10px 0 0 20px;
+}
+
 .button-wrapper {
   margin: 50px 0;
   float: right;
@@ -257,7 +263,8 @@ button {
   display: flex;
   height: 50px;
   justify-content: center;
-  margin-right: 4rem;
+  margin-right: 2rem;
   width: 100px;
+  font-size: 1.2rem;
 }
 </style>

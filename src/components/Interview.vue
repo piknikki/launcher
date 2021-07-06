@@ -1,7 +1,7 @@
 <template>
   <div class="interview-container">
     <h1>{{ interview.company }}</h1>
-    <p>Interviewee: Nikki P.</p>
+    <p>Interviewee: {{ interview.user }}</p>
     <p>Offer? {{ interview.offer ? 'Yes' : 'No' }}</p>
     <div>
       <span class="bold">Takeaways (tl;dr): </span>{{ interview.takeaways }}
