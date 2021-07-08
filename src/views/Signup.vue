@@ -1,49 +1,46 @@
 <template>
-  <div class="signup">
-    <h3>Sign up for Launcher access</h3>
+  <div class="signup block">
     <div class="box">
       <form @submit.prevent="signUp">
-        <div class="field">
-          <label class="label" for="email">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input id="email" v-model="email" class="input" type="text" placeholder="What is your email?" >
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
+        <fieldset>
+          <legend>Sign up for Launcher access</legend>
+          <div class="field">
+            <label class="label" for="email">Email</label>
+            <div class="control has-icons-left has-icons-right">
+              <input id="email" v-model="email" class="input" type="text" placeholder="What is your email?" >
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+            <p class="help">We need this in case you can't remember your password.</p>
           </div>
-          <p class="help">We need this in case you can't remember your password.</p>
-        </div>
 
-        <div class="field">
-          <label class="label" for="alias">Alias</label>
-          <div class="control has-icons-left has-icons-right">
-            <input id="alias" v-model="alias" class="input" type="text" placeholder="What should we call you?" >
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
+          <div class="field">
+            <label class="label" for="alias">Alias</label>
+            <div class="control has-icons-left has-icons-right">
+              <input id="alias" v-model="alias" class="input" type="text" placeholder="What should we call you?" >
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+            <p class="help">{{ this.feedback }}</p>
           </div>
-          <p class="help">{{ this.feedback }}</p>
-        </div>
 
-        <div class="field">
-          <label for="password" class="label">Password</label>
-          <div class="control has-icons-left has-icons-right">
-            <input id="password" v-model="password" class="input" type="password" placeholder="Password" >
-            <span class="icon is-small is-left">
-              <i class="fas fa-unlock-alt"></i>
-            </span>
+          <div class="field">
+            <label for="password" class="label">Password</label>
+            <div class="control has-icons-left has-icons-right">
+              <input id="password" v-model="password" class="input" type="password" placeholder="Password" >
+              <span class="icon is-small is-left">
+                <i class="fas fa-unlock-alt"></i>
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="field is-grouped is-grouped-centered">
-          <div class="control">
-            <button class="button is-link submit-btn">Submit</button>
+          <div class="button-wrapper">
+            <button class="submit-btn">Submit</button>
+            <button class="cancel-btn">Cancel</button>
           </div>
-          <div class="control">
-            <button class="button is-link cancel-btn">Cancel</button>
-          </div>
-        </div>
-
+        </fieldset>
       </form>
     </div>
   </div>
@@ -107,13 +104,44 @@ export default {
 </script>
 
 <style scoped>
-.signup {
-  width: 60%;
+.block {
+  width: 80%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+form {
+  width: 80%;
   margin: 0 auto;
 }
 
-h3 {
-  margin: 10px;
+legend {
+  padding: 0 10px;
+}
+
+fieldset {
+  padding: 20px;
+}
+
+input {
+  font-size: 1.4rem;
+  border: none;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid grey;
+}
+
+input[type=text],
+input[type=password]{
+  width: 60%;
+  padding: 5px;
+}
+
+.button-wrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
@@ -128,6 +156,14 @@ button {
   margin-right: 2rem;
   width: 100px;
   font-size: 1.2rem;
+}
+
+.cancel-btn {
+  background: #f8c2c2;
+}
+
+.submit-btn {
+  background: #bdf3bd;
 }
 
 /*.submit-btn {*/

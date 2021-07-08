@@ -1,38 +1,33 @@
 <template>
-  <div class="login">
-    <h3>Log into Launcher</h3>
-    <div class="box">
+  <div class="login block">
+    <div class="form-wrapper">
       <form @submit.prevent="logIn">
-        <div class="field">
-          <label class="label" for="email">Email</label>
-          <div class="control has-icons-left has-icons-right">
-            <input id="email" v-model="email" class="input" type="text" placeholder="Email" >
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </div>
-        </div>
+        <fieldset>
+          <legend>Log into Launcher</legend>
+            <label class="label" for="email">Email</label>
+            <div class="control has-icons-left has-icons-right">
+              <input id="email" v-model="email" class="input" type="text" placeholder="Email" >
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
 
-        <div class="field">
-          <label for="password" class="label">Password</label>
-          <div class="control has-icons-left has-icons-right">
-            <input id="password" v-model="password" class="input" type="password" placeholder="Password" >
-            <span class="icon is-small is-left">
-              <i class="fas fa-unlock-alt"></i>
-            </span>
+          <div class="field">
+            <label for="password" class="label">Password</label>
+            <div class="control has-icons-left has-icons-right">
+              <input id="password" v-model="password" class="input" type="password" placeholder="Password" >
+              <span class="icon is-small is-left">
+                <i class="fas fa-unlock-alt"></i>
+              </span>
+            </div>
           </div>
-        </div>
 
-        <p v-if="feedback">{{ feedback }}</p>
-        <div class="field is-grouped is-grouped-centered">
-          <div class="control">
-            <button class="button is-link submit-btn">Submit</button>
+          <p v-if="feedback">{{ feedback }}</p>
+          <div class="button-wrapper">
+            <button class="submit-btn">Submit</button>
+            <button class="cancel-btn">Cancel</button>
           </div>
-          <div class="control">
-            <button class="button is-link cancel-btn">Cancel</button>
-          </div>
-        </div>
-
+        </fieldset>
       </form>
     </div>
   </div>
@@ -72,13 +67,44 @@ export default {
 </script>
 
 <style scoped>
-.login {
-  width: 60%;
+.block {
+  width: 80%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+form {
+  width: 80%;
   margin: 0 auto;
 }
 
-h3 {
-  margin: 10px;
+legend {
+  padding: 0 10px;
+}
+
+fieldset {
+  padding: 20px;
+}
+
+input {
+  font-size: 1.4rem;
+  border: none;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid grey;
+}
+
+input[type=text],
+input[type=password]{
+  width: 60%;
+  padding: 5px;
+}
+
+.button-wrapper {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
@@ -93,6 +119,14 @@ button {
   margin-right: 2rem;
   width: 100px;
   font-size: 1.2rem;
+}
+
+.cancel-btn {
+  background: #f8c2c2;
+}
+
+.submit-btn {
+  background: #bdf3bd;
 }
 
 /*.submit-btn {*/
