@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img class="logo" alt="Launcher logo" src="../assets/launcher.png">
     <h1 class="header">Launcher Interviews</h1>
     <p class="explore">Green background indicates the interviewee got the job, but some of the best learning
       experiences come from failure. Make sure you explore what worked for some and what didn't work for others.</p>

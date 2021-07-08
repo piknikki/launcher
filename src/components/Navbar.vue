@@ -1,5 +1,9 @@
 <template>
   <div class="main-navbar">
+    <div class="logo-container">
+      <img class="logo" alt="Launcher logo" src="../assets/launcher.png">
+      <h1>Launcher</h1>
+    </div>
     <nav class="navbar" role="navigation">
       <h4 v-if="user" class="navbar-item greet">{{ user.alias }}</h4>
       <router-link to="/" v-if="user" >Home</router-link>
@@ -44,11 +48,26 @@ export default {
 
 <style scoped>
 .main-navbar {
-  font-family: 'Orbitron', sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  margin: 0 10px;
 }
 
 a {
   margin: 0 10px;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 
