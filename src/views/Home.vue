@@ -2,6 +2,7 @@
   <div class="home">
     <img class="logo" alt="Launcher logo" src="../assets/launcher.png">
     <h1 class="header">Launcher Interviews</h1>
+    <p>Green background indicates the interviewee got the job.</p>
     <Interviews />
   </div>
 </template>
