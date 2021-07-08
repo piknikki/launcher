@@ -5,10 +5,10 @@
       <h1>Launcher</h1>
     </div>
     <nav class="navbar" role="navigation">
-<!--      <h4 v-if="user" class="navbar-item greet">{{ user.email }}</h4>-->
+<!--      <h4 v-if="user" class="navbar-item greet">{{ user.alias }}</h4>-->
       <router-link to="/" v-if="user" >Home</router-link>
       <router-link to="/about">About</router-link>
-      <router-link :to="{ name: 'InterviewForm', params: { userEmail: user.email } }">Form</router-link>
+      <router-link v-if="user" :to="{ name: 'InterviewForm', params: { userEmail: user.email } }">Form</router-link>
       <router-link to="/login" v-if="!user" >Login</router-link>
       <router-link to="/signup" v-if="!user" >Signup</router-link>
       <a v-if="user" @click="logOut" class="logout">Log Out</a>
