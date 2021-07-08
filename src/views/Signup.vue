@@ -12,7 +12,6 @@
                 <i class="fas fa-envelope"></i>
               </span>
             </div>
-            <p class="help">We need this in case you can't remember your password.</p>
           </div>
 
           <div class="field">
