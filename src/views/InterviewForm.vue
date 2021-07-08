@@ -86,10 +86,10 @@
           ></textarea>
           <br>
 
-          <label for="retro">Retrospective: </label>
+          <label for="retro">Retrospective (what went right or wrong?): </label>
           <textarea v-model="formData.retro"
                     id="retro"
-                    placeholder="What could you have done better? Include feedback, if you received it."
+                    placeholder="Include feedback, if you received it."
                     rows="2"
                     cols="60"
                     wrap="soft"
