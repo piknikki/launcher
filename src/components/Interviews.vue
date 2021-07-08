@@ -6,7 +6,7 @@
           :key="interview.key"
           :data-id="index"
           class="row"
-          :class="rowColor(index)"
+          :class="rowColor(interview.offer)"
       >
         <RouterLink :to="{ name: 'Interview', params: { id: interview.id, slug: interview.slug }}">
           {{ interview.company }}
@@ -35,10 +35,9 @@ export default {
     ...mapActions([
       'fetchInterviews'
     ]),
-    rowColor: function (row) {
-      const rowNum = Number(row)
+    rowColor: function (offer) {
       return {
-        grey: rowNum % 2 === 0
+        green: offer === true
       }
     }
   },
@@ -68,6 +67,10 @@ export default {
 
 .grey {
   background: #b8b8b8;
+}
+
+.green {
+  background: #b0f6b0;
 }
 
 a {
