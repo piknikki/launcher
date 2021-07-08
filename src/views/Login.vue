@@ -34,7 +34,7 @@
 </template>
 
 <script>
-// import firebase from 'firebase'
+import firebase from 'firebase'
 
 export default {
   name: 'Login',
@@ -45,24 +45,24 @@ export default {
       feedback: null,
       loggedIn: false
     }
+  },
+  methods: {
+    logIn () {
+      if (this.email && this.password) {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            this.loggedIn = true
+            this.$router.push({ path: '/' })
+          })
+          .catch(err => {
+            this.feedback = err.message
+          })
+        this.feedback = null
+      } else {
+        this.feedback = 'Please fill in both fields.'
+      }
+    }
   }
-  // methods: {
-  //   logIn () {
-  //     if (this.email && this.password) {
-  //       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-  //         .then(() => {
-  //           this.loggedIn = true
-  //           this.$router.push({ path: '/' })
-  //         })
-  //         .catch(err => {
-  //           this.feedback = err.message
-  //         })
-  //       this.feedback = null
-  //     } else {
-  //       this.feedback = 'Please fill in both fields.'
-  //     }
-  //   }
-  // }
 }
 </script>
 

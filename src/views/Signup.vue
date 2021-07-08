@@ -46,9 +46,9 @@
 </template>
 
 <script>
-// import slugify from 'slugify'
-// import db from '../firebase/init'
-// import firebase from 'firebase'
+import slugify from 'slugify'
+import { db } from '../firebaseDb'
+import firebase from 'firebase'
 
 export default {
   name: 'Signup',
@@ -62,43 +62,43 @@ export default {
       slug: null,
       feedback: null
     }
+  },
+  methods: {
+    signUp () {
+      if (this.alias && this.password && this.email) {
+        this.slug = slugify(this.alias, {
+          replacement: '-',
+          remove: /[$*_+~.()'"!?\-:@]/g,
+          lower: true
+        })
+        const ref = db.collection('users').doc(this.slug)
+        ref.get().then(doc => {
+          if (doc.exists) {
+            this.feedback = 'Sorry, that alias already exists. Pick another one.'
+          } else {
+            this.feedback = `Hey, ${this.alias}!`
+            firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+              .then(cred => {
+                console.log(cred.user)
+                ref.set({
+                  alias: this.alias,
+                  user_id: cred.user.uid
+                })
+              })
+              .then(() => {
+                this.$router.push({ name: 'Home' })
+              })
+              .catch(err => {
+                console.log(err)
+                this.feedback = err.message
+              })
+          }
+        })
+      } else {
+        this.feedback = 'You must complete all fields.'
+      }
+    }
   }
-  // methods: {
-  //   signUp () {
-  // if (this.alias && this.password && this.email) {
-  //   this.slug = slugify(this.alias, {
-  //     replacement: '-',
-  //     remove: /[$*_+~.()'"!?\-:@]/g,
-  //     lower: true
-  //   })
-  //   let ref = db.collection('users').doc(this.slug)
-  //   ref.get().then(doc => {
-  //     if (doc.exists) {
-  //       this.feedback = 'Sorry, that alias already exists. Pick another one.'
-  //     } else {
-  //       this.feedback = `Hey, ${this.alias}!`
-  //       firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-  //         .then(cred => {
-  //           console.log(cred.user)
-  //           ref.set({
-  //             alias: this.alias,
-  //             user_id: cred.user.uid
-  //           })
-  //         })
-  //         .then(() => {
-  //           this.$router.push({ name: 'Home' })
-  //         })
-  //         .catch(err => {
-  //           console.log(err)
-  //           this.feedback = err.message
-  //         })
-  //     }
-  //   })
-  // } else {
-  //   this.feedback = 'You must complete all fields.'
-  // }
-  //   }
-  // }
 }
 </script>
 
