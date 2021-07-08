@@ -5,8 +5,8 @@
         <fieldset>
           <legend>Submit a new interview experience</legend>
           <h4>{{ this.$route.params.userEmail }}</h4>
-<!--          <label for="user">Your name:<sup class="required">*</sup> </label>-->
-<!--          <input v-model="formData.user" id="user" type="text" placeholder="First name and last initial, if you don't mind" required>-->
+          <label for="user">Your name:<sup class="required">*</sup> </label>
+          <input v-model="formData.user" id="user" type="text" placeholder="First name and last initial, if you don't mind" required>
           <br>
           <label for="company">Company:<sup class="required">*</sup> </label>
           <input v-model="formData.company" id="company" type="text" placeholder="Company Name" required>
