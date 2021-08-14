@@ -20,7 +20,7 @@
     </section>
     <section>Tech challenge:  {{ interview.description }}</section>
     <section>My solution:  {{ interview.solution }}</section>
-    <section>What I think went wrong:  {{ interview.retro }}</section>
+    <section>What I think went right/wrong:  {{ interview.retro }}</section>
   </div>
 </template>
 
