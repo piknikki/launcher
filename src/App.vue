@@ -3,9 +3,26 @@
     <div id="nav">
       <Navbar />
     </div>
+    <ul>
+      <li v-for="(message, index) in messages" :key="index">
+        {{ message }}
+      </li>
+    </ul>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Navbar from './components/Navbar'
+export default {
+  components: { Navbar },
+  data () {
+    return {
+      messages: ['hey world', 'hi there']
+    }
+  }
+}
+</script>
 
 <style>
 * {
@@ -16,7 +33,7 @@
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  //font-family: 'Montserrat', sans-serif;
+//font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -36,10 +53,3 @@ a {
   color: #42b983;
 }
 </style>
-
-<script>
-import Navbar from './components/Navbar'
-export default {
-  components: { Navbar }
-}
-</script>
