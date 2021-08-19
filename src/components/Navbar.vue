@@ -2,7 +2,7 @@
   <div class="main-navbar">
     <div class="logo-container">
       <img class="logo" alt="Launcher logo" src="../assets/launcher.png">
-      <h1>Launcher</h1>
+      <h1 class="app-name">Launcher</h1>
     </div>
     <nav class="navbar" role="navigation">
 <!--      <h4 v-if="user" class="navbar-item greet">{{ user.alias }}</h4>-->
